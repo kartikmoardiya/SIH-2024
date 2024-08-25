@@ -80,13 +80,13 @@ function iterateCharacters(urls) {
 function seprateUrls(uurls) {
 
     let ccategories = {
-        pdf: [],
-        drive: [],
-        instagram: [],
-        docs: [],
-        twitter: [],
-        github: [],
-        others: []
+        pdf: new Set(),
+        drive: new Set(),
+        instagram: new Set(),
+        docs: new Set(),
+        twitter: new Set(),
+        github: new Set(),
+        others: new Set()
     };
 
     let patterns = {
@@ -103,16 +103,21 @@ function seprateUrls(uurls) {
 
         for (let [ccategory, pattern] of Object.entries(patterns)) {
             if (pattern.test(uurl)) {
-                ccategories[ccategory].push(uurl);
+                ccategories[ccategory].add(uurl);
                 ccategorized = true;
                 break;
             }
         }
 
         if (!ccategorized) {
-            ccategories.others.push(uurl);
+            ccategories.others.add(uurl);
         }
     });
+
+    // Convert Sets back to arrays if needed
+    for (let category in ccategories) {
+        ccategories[category] = Array.from(ccategories[category]);
+    }
 
     return ccategories;
 }
