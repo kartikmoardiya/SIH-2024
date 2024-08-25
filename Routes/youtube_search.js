@@ -10,19 +10,19 @@ const router = express.Router()
 // https://www.youtube.com/watch?v={AgyTHzjBS-c}
 
 
-async function searchYouTubeVideo(query) {
-    try {
-        const results = await ytSearch.GetListByKeyword(query, false, 10); // `query` is the search term, and `10` is the number of results
-        // console.log('Search results:', results.items);
-        // console.log('Search results:')
+// async function searchYouTubeVideo(query) {
+//     try {
+//         const results = await ytSearch.GetListByKeyword(query, false, 10); // `query` is the search term, and `10` is the number of results
+//         // console.log('Search results:', results.items);
+//         // console.log('Search results:')
 
-        return results.items;
-    } catch (error) {
+//         return results.items;
+//     } catch (error) {
 
-        // console.error('Error searching YouTube:', error);
-        return error;
-    }
-}
+//         // console.error('Error searching YouTube:', error);
+//         return error;
+//     }
+// }
 
 
 router.get('/video',async(req, res)=>{
