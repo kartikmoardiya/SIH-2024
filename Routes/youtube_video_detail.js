@@ -9,8 +9,8 @@ router.get('/detail', async (req, res) => {
         'https://www.youtube.com/watch?v=9kQ1JUDleWg',
         'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        // 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        // 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
 
         // Add more URLs here
     ];
