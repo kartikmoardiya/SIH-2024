@@ -14,13 +14,16 @@ router.get('/detail', async (req, res) => {
          
     ];
 
+    let des;
     videoUrls.forEach(videoUrl => {
         ytdl.getInfo(videoUrl)
             .then(info => {
-                console.log('Description for', videoUrl, ':', info.videoDetails.description);
+                des+=info.videoDetails.description;
+                // console.log('Description for', videoUrl, ':', info.videoDetails.description);
             })
             .catch(error => console.error('Error fetching video info for', videoUrl, ':', error));
     });
+    res.json({data:des})
 })
 
 module.exports = router
