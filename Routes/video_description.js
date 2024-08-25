@@ -11,7 +11,7 @@ const youtube = google.youtube('v3');
 router.get('/description', async (req, res) => {
     try {
         const videoIds = req.body.ids;
-        const apiKey = "AIzaSyAmNb3ikmvczVGAPxqtd06-1WLpz1wa_Qw";
+        const apiKey = process.env.YOUTUBE_DATA_API;
         const response = await youtube.videos.list({
             key: apiKey,
             part: 'snippet',
