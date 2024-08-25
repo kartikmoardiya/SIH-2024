@@ -13,7 +13,7 @@ const video_detail = require('./Routes/youtube_video_detail')
 
 app.use(bodyParser.json());
 app.use('/youtube',youtube_search);
-app.use('/youtube/video',youtube_search);
+app.use('/video',video_detail);
 app.get('/',(req,res)=>{
     res.json({msg:"Welcome, Welcome, Bhale Padhara"});
 })
