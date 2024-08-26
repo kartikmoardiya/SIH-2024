@@ -15,7 +15,7 @@ router.get('/video', async (req, res) => {
 
     try {
         let query = req.body.title;
-        const results = await ytSearch.GetListByKeyword(query, false, 100); // `query` is the search term, and `10` is the number of results
+        const results = await ytSearch.GetListByKeyword(query, false, 20); // `query` is the search term, and `10` is the number of results
         // https://www.youtube.com/watch?v={1Z3RrRYIoVs}
         res.json({ data: results.items })
 
