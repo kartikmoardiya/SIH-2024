@@ -11,7 +11,7 @@ const router = express.Router()
 // https://www.youtube.com/watch?v={AgyTHzjBS-c}
 
 // Real For Individual Video
-router.get('/video', async (req, res) => {
+router.post('/video', async (req, res) => {
 
     try {
         // let query = req.headers.title;
