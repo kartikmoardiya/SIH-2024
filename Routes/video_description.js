@@ -10,6 +10,7 @@ const { google } = require('googleapis');
 const youtube = google.youtube('v3');
 router.get('/description', async (req, res) => {
     try {
+        // console.log(req.headers.ids)
         const videoIds = req.body.ids;
         const apiKey = process.env.YOUTUBE_DATA_API;
         const response = await youtube.videos.list({
