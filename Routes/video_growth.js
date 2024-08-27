@@ -31,7 +31,7 @@ router.post('/add/genlink', async(req,res)=>{
     res.json({msg:"Data Added Successfully"})
 })
 
-router.get('/genlink', async (req,res)=>{
+router.post('/genlink', async (req,res)=>{
     const link = req.body.link;
 
     let data = await Data.findOne({link});

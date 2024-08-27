@@ -8,7 +8,7 @@ const router = express.Router()
 // Modules For Get Description
 const { google } = require('googleapis');
 const youtube = google.youtube('v3');
-router.get('/description', async (req, res) => {
+router.post('/description', async (req, res) => {
     try {
         // console.log(req.headers.ids)
         const videoIds = req.body.ids;
