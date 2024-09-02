@@ -4,6 +4,7 @@ const app = express();
 const db = require('./Database/db');
 const router = express.Router();
 const model = require('./Models/user')
+const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 
 
@@ -16,7 +17,7 @@ const user = require('./Routes/users')
 const pdf = require('./Routes/addPdf')
 
 
-
+app.use(cors());
 app.use("/files", express.static("files"))
 app.use(bodyParser.json());
 app.use('/youtube',youtube_search);
