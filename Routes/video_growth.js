@@ -3,6 +3,7 @@ const app = express()
 const router = express.Router()
 const Data = require('../Models/data')
 
+// Event mate
 router.post('/add/genlink', async(req,res)=>{
     const gen_link = req.body.gel_link;
 
@@ -31,6 +32,7 @@ router.post('/add/genlink', async(req,res)=>{
     res.json({msg:"Data Added Successfully"})
 })
 
+// Video Click Kre tyare
 router.post('/genlink', async (req,res)=>{
     const link = req.body.link;
 
