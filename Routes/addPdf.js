@@ -6,44 +6,6 @@ const app = express();
 app.use("/files", express.static("files"))
 const fs = require("fs");
 const path = require('path');
-// const storage = multer.diskStorage({
-//   destination: "uploads",
-//   filename: (req, file, callback) => {
-//     return callback(null, Date.now() + '-' + file.originalname);
-//   },
-// });
-
-// const upload = multer({
-//   storage: storage,
-// });
-
-// const addPdf = async (req, res) => {
-// //   let pdfFilename = req.file.filename;
-// console.log(pdfFilename)
-
-//   const data = new Pdf({
-//     pdf: pdfFilename,
-//   });
-
-//   try {
-//     await data.save();
-//     res.status(200).json({
-//       message: "PDF added successfully",
-//       success: true,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({
-//       message: "Internal server error",
-//       success: false,
-//     });
-//   }
-// };
-
-// router.post("/add", upload.single("pdf"), addPdf);
-
-
-
 
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -86,31 +48,9 @@ router.post("/upload-files", upload.single("file"), async (req, res) => {
     }
 });
 
-
-// router.post("/get-files", async (req, res) => {
-//     try {
-//       const pdfTitle=req.body.title;
-//       const dbpdf=await Pdf.find({
-//         title:pdfTitle
-//       })
-//       const pdfName=dbpdf.pdf;
-//       console.log(pdfName);
-//       const file=fs.link(`files/${pdfName.pdf}`, () => {});
-//       return res.status(200).json({
-//         success:"true",
-//         pdf:file
-//       })
-//     } catch (error) {
-//         return res.status(501).json({
-//             success:"false",
-//         })
-//     }
-//   });
-
 router.post("/get-files", async (req, res) => {
     try {
         const pdfTitle = req.body.title;
-
 
         const dbpdf = await Pdf.findOne({ title: pdfTitle });
         console.log(dbpdf);
@@ -121,7 +61,8 @@ router.post("/get-files", async (req, res) => {
             });
         }
 
-        const pdfName = dbpdf.pdf;
+        let url = "https://sih-2024-5.onrender.com/files";
+        const pdfName = url + dbpdf.pdf;
 
         res.json({path : pdfName})
     } catch (error) {
