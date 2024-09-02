@@ -88,17 +88,18 @@ router.post('/create-pdf', async (req, res) => {
 
     try {
         const filePath = await createPDF(filename, content, heading);
-        res.sendFile(filePath, { headers: { 'Content-Disposition': `attachment; filename="${filename}"` } }, (err) => {
-            if (err) {
-                console.error('Error sending file:', err);
-            }
-            // Optionally, delete the file after sending it
-            fs.unlink(filePath, (unlinkErr) => {
-                if (unlinkErr) {
-                    console.error('Error deleting file:', unlinkErr);
-                }
-            });
-        });
+        // res.sendFile(filePath, { headers: { 'Content-Disposition': `attachment; filename="${filename}"` } }, (err) => {
+        //     if (err) {
+        //         console.error('Error sending file:', err);
+        //     }
+        //     // Optionally, delete the file after sending it
+        //     fs.unlink(filePath, (unlinkErr) => {
+        //         if (unlinkErr) {
+        //             console.error('Error deleting file:', unlinkErr);
+        //         }
+        //     });
+        // });
+        res.json({msg:"Done"})
     } catch (error) {
         console.error('Error creating PDF:', error);
         res.status(500).send('Internal Server Error');
