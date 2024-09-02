@@ -11,7 +11,7 @@ const youtube_search = require('./Routes/youtube_search')
 const video_description = require('./Routes/video_description')
 const video_growth = require('./Routes/video_growth')
 const mp4_to_text = require('./Routes/mp4_to_text')
-const generate_pdf = require('./Routes/generate_pdf')
+const generate_pdf = require('./generate_pdf')
 
 
 app.use(bodyParser.json());
