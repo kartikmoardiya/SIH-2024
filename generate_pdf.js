@@ -13,6 +13,7 @@ function createPDF(filename, content, heading) {
         const filePath = path.join(__dirname, filename);
 
         const writeStream = fs.createWriteStream(filePath);
+        // const writeStream = fs.createWriteStream(Date.now());
 
         doc.pipe(writeStream);
 
@@ -71,6 +72,8 @@ function createPDF(filename, content, heading) {
 
         writeStream.on('finish', () => {
             resolve(filePath);
+            // resolve(Date.now());
+
         });
 
         writeStream.on('error', reject);
@@ -78,19 +81,24 @@ function createPDF(filename, content, heading) {
 }
 
 // Route to create PDF
-router.post('/create-pdf', async (req, res) => {
-    let { content, heading } = req.body;
+router.post('/create-pdf',async (req, res) => {
+    let { content, heading, pdf_title } = req.body;
 
     if (!content || !heading) {
         return res.status(400).send('Bad request: content or heading missing');
     }
-    const filename = `./${heading}.pdf`;
+    // Pdf Nu Name Lakhay chhe
+    let filename = `./files/${Date.now()}${heading}.pdf`;
 
+    // heading = Date.now() + heading;
+    // console.log(heading)
+    // console.log(filename)
+    filename = `${Date.now()}${heading}.pdf`
     try {
         const filePath = await createPDF(filename, content, heading);
-        console.log(`./${heading}.pdf`)
         const data = new PDF({
-            pdfName: heading,
+            pdf: filename,
+            title : pdf_title
         });
 
         try {
