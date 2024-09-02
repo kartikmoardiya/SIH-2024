@@ -17,7 +17,7 @@ const pdf = require('./Routes/addPdf')
 
 
 
-app.use("/files", express.static("fles"))
+app.use("/files", express.static("files"))
 app.use(bodyParser.json());
 app.use('/youtube',youtube_search);
 app.use('/video',video_description);
