@@ -14,6 +14,7 @@ const mp4_to_text = require('./Routes/mp4_to_text')
 const generate_pdf = require('./generate_pdf')
 
 
+app.use("/uploads", express.static("uploads"))
 app.use(bodyParser.json());
 app.use('/youtube',youtube_search);
 app.use('/video',video_description);

@@ -79,7 +79,7 @@ def create_pdf_route():
     
     content = request.json['content']
     heading = request.json['heading']
-    filename = heading + ".pdf"
+    filename = "./uploads/"+heading + ".pdf"
     
     # Create the PDF
     create_pdf(filename, content, heading)
