@@ -61,8 +61,8 @@ router.post("/get-files", async (req, res) => {
             });
         }
 
-        let url = "https://sih-2024-5.onrender.com/files/";
-        const pdfName = url + dbpdf.pdf;
+        // let url = "https://sih-2024-5.onrender.com/files/";
+        const pdfName =  dbpdf.pdf;
 
         res.json({path : pdfName})
     } catch (error) {
