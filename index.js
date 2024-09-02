@@ -13,17 +13,19 @@ const video_growth = require('./Routes/video_growth')
 const mp4_to_text = require('./Routes/mp4_to_text')
 const generate_pdf = require('./generate_pdf')
 const user = require('./Routes/users')
+const pdf = require('./Routes/addPdf')
 
 
 
-app.use("/uploads", express.static("uploads"))
+app.use("/files", express.static("fles"))
 app.use(bodyParser.json());
 app.use('/youtube',youtube_search);
 app.use('/video',video_description);
 app.use('/growth',video_growth);
 app.use('/',generate_pdf);
 app.use('/',mp4_to_text);
-app.use('/user',user);  
+app.use('/user',user); 
+app.use('/pdf',pdf); 
 app.get('/',(req,res)=>{
     res.json({msg:"Welcome, Welcome, Bhale Padhara"});
 })

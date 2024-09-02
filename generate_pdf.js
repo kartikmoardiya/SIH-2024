@@ -84,10 +84,11 @@ router.post('/create-pdf', async (req, res) => {
     if (!content || !heading) {
         return res.status(400).send('Bad request: content or heading missing');
     }
-    const filename = `./uploads/${heading}.pdf`;
+    const filename = `./${heading}.pdf`;
 
     try {
         const filePath = await createPDF(filename, content, heading);
+        console.log(`./${heading}.pdf`)
         const data = new PDF({
             pdfName: heading,
         });
