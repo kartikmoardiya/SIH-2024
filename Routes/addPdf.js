@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Pdf = require('../Models/pdf');
+const app = express();
 
+app.use("/files", express.static("files"))
+const fs = require("fs");
+const path = require('path');
 // const storage = multer.diskStorage({
 //   destination: "uploads",
 //   filename: (req, file, callback) => {
@@ -65,13 +69,13 @@ router.post("/upload-files", upload.single("file"), async (req, res) => {
         });
         try {
             await data.save();
-            res.status(200).json({
+            return res.status(200).json({
                 message: "PDF added successfully",
                 success: true,
             });
         } catch (error) {
             console.log(error);
-            res.status(500).json({
+            return res.status(500).json({
                 message: "Internal server error",
                 success: false,
             });
@@ -83,11 +87,49 @@ router.post("/upload-files", upload.single("file"), async (req, res) => {
 });
 
 
-router.get("/get-files", async (req, res) => {
+// router.post("/get-files", async (req, res) => {
+//     try {
+//       const pdfTitle=req.body.title;
+//       const dbpdf=await Pdf.find({
+//         title:pdfTitle
+//       })
+//       const pdfName=dbpdf.pdf;
+//       console.log(pdfName);
+//       const file=fs.link(`files/${pdfName.pdf}`, () => {});
+//       return res.status(200).json({
+//         success:"true",
+//         pdf:file
+//       })
+//     } catch (error) {
+//         return res.status(501).json({
+//             success:"false",
+//         })
+//     }
+//   });
+
+router.post("/get-files", async (req, res) => {
     try {
-      await Pdf.find({}).then((data) => {
-        res.send({ status: "ok", data: data });
-      });
-    } catch (error) {}
-  });
+        const pdfTitle = req.body.title;
+
+
+        const dbpdf = await Pdf.findOne({ title: pdfTitle });
+        console.log(dbpdf);
+        if (!dbpdf) {
+            return res.status(404).json({
+                success: "false",
+                message: "PDF not found in database"
+            });
+        }
+
+        const pdfName = dbpdf.pdf;
+
+        res.json({path : pdfName})
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: "false",
+            message: "Server error"
+        });
+    }
+});
 module.exports = router;
