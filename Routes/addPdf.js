@@ -59,7 +59,7 @@ router.post("/upload-files", upload.single("file"), async (req, res) => {
     const title = req.body.title;
     const fileName = req.file.filename;
     try {
-        const data = new PDF({
+        const data = new Pdf({
             title: title,
             pdf: fileName
         });
