@@ -87,7 +87,7 @@ router.post('/create-pdf', async (req, res) => {
     const filename = `${heading}.pdf`;
 
     try {
-        const filePath = await createPDF(filename, content, heading);
+        // const filePath = await createPDF(filename, content, heading);
         // res.sendFile(filePath, { headers: { 'Content-Disposition': `attachment; filename="${filename}"` } }, (err) => {
         //     if (err) {
         //         console.error('Error sending file:', err);
